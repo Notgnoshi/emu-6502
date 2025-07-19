@@ -1,3 +1,7 @@
+build*/
+compile_commands.json
+config.h
+
 # http://www.gnu.org/software/automake
 
 Makefile.in
