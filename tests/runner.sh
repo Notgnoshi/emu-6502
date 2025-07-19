@@ -2,6 +2,7 @@
 set -o errexit
 set -o pipefail
 set -o nounset
+set -x
 
 # Define EMU_REPO for use by the test script for defining paths to test assets
 SOURCE="${BASH_SOURCE[0]}"
@@ -12,14 +13,14 @@ EMU_REPO="$(readlink --canonicalize --no-newline "$EMU_REPO")"
 EMU_TEST="$1"
 
 ## A diff shim that gives better looking diffs if delta is installed.
-diff() {
+function diff() {
     if command -v delta &>/dev/null; then
-        delta "$@"
+        delta --paging=never "$@"
     else
-        diff --unified --color='always' "$@"
+        # Use command so we don't recurse!
+        command diff --unified --color=always "$@"
     fi
 }
 
-set -x
 # shellcheck disable=SC1090
 source "$EMU_TEST" # Execute the test in the current environment
