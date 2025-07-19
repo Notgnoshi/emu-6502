@@ -6,3 +6,9 @@ AM_CFLAGS = -I$(srcdir)/include
 
 bin_PROGRAMS = asm
 asm_LDADD = libemu.la
+
+check_PROGRAMS = tests/libemu
+tests_libemu_LDADD = libemu.la
+
+TESTS = \
+	tests/libemu

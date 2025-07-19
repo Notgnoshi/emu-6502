@@ -27,3 +27,10 @@ make clean
 # Clean up the generated autotools files
 git clean -f -X -d
 ```
+
+## How to test
+
+```sh
+make check
+# test output saved in tests/*.log for each test
+```
