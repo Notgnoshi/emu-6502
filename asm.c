@@ -6,11 +6,13 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+// Global does actually make sense for a flag like this?
+// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
 bool g_emu_verbose = false;
 
 typedef struct emu_cli_args_t
 {
-    // TODO
+    bool removeme;
 } emu_cli_args_t;
 
 void emu_print_usage_statement(void)
@@ -28,7 +30,7 @@ void emu_print_usage_statement(void)
 
 emu_cli_args_t emu_parse_args(int argc, char* const* argv)
 {
-    emu_cli_args_t args = {};
+    emu_cli_args_t args = {0};
 
     struct option options[] = {
         {"help", no_argument, NULL, 'h'},
@@ -77,6 +79,7 @@ emu_cli_args_t emu_parse_args(int argc, char* const* argv)
 int main(int argc, char* const argv[])
 {
     const emu_cli_args_t args = emu_parse_args(argc, argv);  // Exits on failure
+    (void)args;
 
     return 0;
 }
