@@ -1,8 +1,13 @@
+AM_CFLAGS = \
+	-g -O2 -std=c11 \
+	-I$(srcdir)/include \
+	-Wall -Wextra -Wpedantic \
+	-Wshadow -Wstrict-overflow -Wredundant-decls -Wnested-externs -Wmissing-include-dirs \
+	-Wformat=2 -Wno-unused-parameter -Wwrite-strings -Wstrict-prototypes -Wold-style-definition
+
 lib_LTLIBRARIES = libemu.la
 libemu_la_SOURCES = \
 	src/add.c 	include/emu/add.h
-
-AM_CFLAGS = -I$(srcdir)/include
 
 bin_PROGRAMS = asm
 asm_LDADD = libemu.la
